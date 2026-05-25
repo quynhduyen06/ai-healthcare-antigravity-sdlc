@@ -53,3 +53,27 @@ Khi sinh mã nguồn, AI Agent cần giữ cấu trúc rõ ràng và thêm comme
 
 ## 15. Tóm tắt
 Tài liệu 08. AGENTS định nghĩa các quy tắc hành vi dành cho AI Agent khi sinh giao diện và mã nguồn cho AI Healthcare Assistant. Mục tiêu chính là giữ tính nhất quán, tránh vượt phạm vi hệ thống, tránh thiết kế quá mức cần thiết, giữ đúng phong cách healthcare và đảm bảo AI Assistant tuân thủ các quy tắc an toàn y tế trong toàn bộ hệ thống MVP.
+
+## Superpowers Usage
+
+Superpowers is installed under .agent-skills/superpowers.
+
+Purpose:
+- structured planning
+- test-first implementation
+- systematic debugging
+- code review
+- final validation
+
+Use Superpowers when:
+- planning implementation for R01-R04
+- debugging failed tests
+- reviewing generated code
+- creating QA/final validation reports
+
+The agent must still follow:
+- docs/01-business-requirements.md
+- docs/04-database-spec.md
+- docs/06-test-plan.md
+- DESIGN.md
+- DECISIONS.md
