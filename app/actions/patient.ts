@@ -55,3 +55,11 @@ export async function saveAIAdvice(data: {
   revalidatePath("/patient/assistant");
   return advice;
 }
+
+// ── Get AI advices for a patient ─────────────────────────────────────────
+export async function getPatientAIAdvices(patientId: string) {
+  return prisma.aIAdvice.findMany({
+    where: { patientId },
+    orderBy: { createdAt: "asc" },
+  });
+}
