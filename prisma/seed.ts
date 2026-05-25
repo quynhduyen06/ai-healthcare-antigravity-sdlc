@@ -79,14 +79,30 @@ async function main() {
   });
 
   // ── AI Advice sample ─────────────────────────────────────
-  await prisma.aIAdvice.create({
-    data: {
-      patientId:    patientLan.id,
-      symptomInput: "Tôi bị đau đầu và chóng mặt từ sáng hôm nay",
-      suggestedDept: "Thần kinh",
-      responseText:  "Đau đầu kèm chóng mặt có thể do nhiều nguyên nhân như căng thẳng, thiếu ngủ hoặc huyết áp thay đổi. Tôi gợi ý bạn đến khám tại khoa Thần kinh.",
-      disclaimer:    "Nội dung từ AI Assistant chỉ mang tính tham khảo và hỗ trợ ban đầu, không phải chẩn đoán y khoa. Vui lòng gặp bác sĩ hoặc chuyên gia y tế để được tư vấn chính xác.",
-    },
+  await prisma.aIAdvice.createMany({
+    data: [
+      {
+        patientId:    patientLan.id,
+        symptomInput: "Tôi bị đau đầu và chóng mặt từ sáng hôm nay",
+        suggestedDept: "Thần kinh",
+        responseText:  "Đau đầu kèm chóng mặt có thể do nhiều nguyên nhân như căng thẳng, thiếu ngủ hoặc huyết áp thay đổi. Tôi gợi ý bạn đến khám tại khoa Thần kinh.",
+        disclaimer:    "Nội dung từ AI Assistant chỉ mang tính tham khảo và hỗ trợ ban đầu, không phải chẩn đoán y khoa. Vui lòng gặp bác sĩ hoặc chuyên gia y tế để được tư vấn chính xác.",
+      },
+      {
+        patientId:    patientBinh.id,
+        symptomInput: "Tôi bị ho khan kéo dài và hơi khó thở khi đi bộ nhanh.",
+        suggestedDept: "Hô hấp",
+        responseText:  "Triệu chứng ho kéo dài và khó thở khi vận động có thể liên quan đến đường hô hấp. Bạn nên sắp xếp khám sớm với bác sĩ chuyên khoa Hô hấp để được kiểm tra kỹ hơn.",
+        disclaimer:    "Nội dung từ AI Assistant chỉ mang tính tham khảo và hỗ trợ ban đầu, không phải chẩn đoán y khoa. Vui lòng gặp bác sĩ hoặc chuyên gia y tế để được tư vấn chính xác.",
+      },
+      {
+        patientId:    patientCuc.id,
+        symptomInput: "Tôi hay bị đau nhói ở ngực trái thỉnh thoảng.",
+        suggestedDept: "Tim mạch",
+        responseText:  "Đau nhói vùng ngực là triệu chứng cần được lưu tâm. Tình trạng này nên được đánh giá bởi bác sĩ khoa Tim mạch để loại trừ các nguyên nhân nguy hiểm.",
+        disclaimer:    "Nội dung từ AI Assistant chỉ mang tính tham khảo và hỗ trợ ban đầu, không phải chẩn đoán y khoa. Vui lòng gặp bác sĩ hoặc chuyên gia y tế để được tư vấn chính xác.",
+      }
+    ]
   });
 
   console.log("✅ Seed completed!");
