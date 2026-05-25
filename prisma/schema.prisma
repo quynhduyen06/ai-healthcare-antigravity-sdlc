@@ -1,0 +1,129 @@
+// Prisma Schema – AI Healthcare Assistant
+// Phase 2: Data & Logic Implementation
+
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+
+// ─────────────────────────────────────────
+// Department
+// ─────────────────────────────────────────
+model Department {
+  id           String        @id @default(cuid())
+  name         String        @unique
+  description  String?
+  icon         String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  doctors      Doctor[]
+  appointments Appointment[]
+}
+
+// ─────────────────────────────────────────
+// Doctor
+// ─────────────────────────────────────────
+model Doctor {
+  id           String        @id @default(cuid())
+  name         String
+  specialty    String
+  experience   String
+  bio          String?
+  phone        String?
+  departmentId String
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+
+  department   Department    @relation(fields: [departmentId], references: [id])
+  appointments Appointment[]
+}
+
+// ─────────────────────────────────────────
+// Patient
+// ─────────────────────────────────────────
+model Patient {
+  id            String          @id @default(cuid())
+  name          String
+  dateOfBirth   DateTime
+  gender        String
+  phone         String?
+  email         String?
+  address       String?
+  bloodType     String?
+  weight        String?
+  height        String?
+  allergies     String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+
+  appointments  Appointment[]
+  medicalRecords MedicalRecord[]
+  aiAdvices     AIAdvice[]
+}
+
+// ─────────────────────────────────────────
+// Appointment
+// ─────────────────────────────────────────
+model Appointment {
+  id           String            @id @default(cuid())
+  patientId    String
+  doctorId     String
+  departmentId String
+  date         DateTime
+  time         String            // e.g. "09:00"
+  reason       String?
+  location     String?
+  status       AppointmentStatus @default(PENDING)
+  notes        String?           // doctor notes
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+
+  patient      Patient           @relation(fields: [patientId], references: [id])
+  doctor       Doctor            @relation(fields: [doctorId], references: [id])
+  department   Department        @relation(fields: [departmentId], references: [id])
+}
+
+enum AppointmentStatus {
+  PENDING
+  CONFIRMED
+  COMPLETED
+  CANCELLED
+  RESCHEDULED
+}
+
+// ─────────────────────────────────────────
+// MedicalRecord
+// ─────────────────────────────────────────
+model MedicalRecord {
+  id          String   @id @default(cuid())
+  patientId   String
+  condition   String
+  diagnosed   DateTime
+  medication  String?
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  patient     Patient  @relation(fields: [patientId], references: [id])
+}
+
+// ─────────────────────────────────────────
+// AIAdvice
+// ─────────────────────────────────────────
+model AIAdvice {
+  id             String   @id @default(cuid())
+  patientId      String
+  symptomInput   String
+  suggestedDept  String
+  responseText   String
+  disclaimer     String
+  createdAt      DateTime @default(now())
+
+  patient        Patient  @relation(fields: [patientId], references: [id])
+}
