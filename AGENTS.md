@@ -54,9 +54,55 @@ Khi sinh mã nguồn, AI Agent cần giữ cấu trúc rõ ràng và thêm comme
 ## 15. Tóm tắt
 Tài liệu 08. AGENTS định nghĩa các quy tắc hành vi dành cho AI Agent khi sinh giao diện và mã nguồn cho AI Healthcare Assistant. Mục tiêu chính là giữ tính nhất quán, tránh vượt phạm vi hệ thống, tránh thiết kế quá mức cần thiết, giữ đúng phong cách healthcare và đảm bảo AI Assistant tuân thủ các quy tắc an toàn y tế trong toàn bộ hệ thống MVP.
 
-## Superpowers Usage
+## Agent Skill Usage
 
-Superpowers is installed under .agent-skills/superpowers.
+### OpenSpec Usage
+OpenSpec is installed for Antigravity under `.agent/` and `openspec/`.
+
+Purpose:
+- spec-driven development
+- requirement clarification
+- proposal creation
+- task breakdown before implementation
+- traceability from requirement to implementation
+
+Use OpenSpec when:
+- starting a new change
+- planning implementation for R01-R04
+- changing requirement scope
+- modifying database schema
+- creating or updating implementation tasks
+- preparing code changes that affect multiple files
+
+Required behavior:
+- Before implementing a major change, create or update the relevant OpenSpec proposal/tasks.
+- Do not implement large feature changes without a clear plan.
+- If the requirement is unclear, ask the human for a decision first.
+
+### TasteSkill Usage
+TasteSkill is installed under `.agents/skills/`.
+
+Purpose:
+- improve frontend and UI quality
+- avoid generic AI-generated UI
+- maintain polished healthcare UI
+- support consistent layout, spacing, typography, forms, cards, tables, and status badges
+
+Use TasteSkill when:
+- creating or refactoring UI pages
+- implementing R01 appointment pages
+- implementing R02 doctor appointment pages
+- implementing R03 patient management pages
+- implementing R04 patient AI assistant UI
+- improving visual design according to DESIGN.md
+
+Required behavior:
+- Always read DESIGN.md before UI changes.
+- Use TasteSkill for UI generation and UI refactoring.
+- Do not create complex dashboards, admin UI, or marketing landing pages unless explicitly approved.
+
+### Superpowers Usage
+Superpowers is installed under `.agent-skills/superpowers`.
 
 Purpose:
 - structured planning
@@ -71,9 +117,21 @@ Use Superpowers when:
 - reviewing generated code
 - creating QA/final validation reports
 
-The agent must still follow:
-- docs/01-business-requirements.md
-- docs/04-database-spec.md
-- docs/06-test-plan.md
-- DESIGN.md
-- DECISIONS.md
+### DESIGN.md Usage
+DESIGN.md is the design source of truth.
+
+Use DESIGN.md when:
+- changing frontend layout
+- changing UI components
+- changing colors, typography, cards, tables, forms, or badges
+- validating healthcare UI consistency
+
+## Required Workflow
+1. Read AGENTS.md, DECISIONS.md, DESIGN.md, and relevant docs before acting.
+2. Use OpenSpec for planning and task breakdown before major implementation.
+3. Use TasteSkill for frontend/UI work.
+4. Use Superpowers for planning, debugging, test-first implementation, review, and final validation.
+5. Implement one requirement at a time: R01, then R02, then R03, then R04.
+6. Do not modify out-of-scope features.
+7. Do not change application code without an approved plan.
+8. After each implementation, validate against docs/06-test-plan.md.
