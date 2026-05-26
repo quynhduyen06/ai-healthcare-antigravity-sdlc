@@ -1,7 +1,7 @@
 "use server";
 
 import { prisma } from "@/lib/prisma";
-import { AppointmentStatus } from "../generated/prisma/enums.ts";
+import { AppointmentStatus } from "../generated/prisma/enums";
 import { revalidatePath } from "next/cache";
 
 // ── Book a new appointment (Patient) ──────────────────────────────────────

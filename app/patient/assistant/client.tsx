@@ -146,7 +146,7 @@ export default function PatientAssistantClient({
     setTimeout(async () => {
       const suggestion = classifySymptom(text);
       const responseText = buildAIResponse(text, suggestion);
-      setMessages((prev) => [...prev, { role: "ai", content: responseText, suggestion }]);
+      setMessages((prev) => [...prev, { role: "ai", content: responseText, suggestion: suggestion || undefined }]);
       setIsTyping(false);
 
       // Save to database

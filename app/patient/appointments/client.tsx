@@ -441,7 +441,7 @@ export default function PatientAppointmentsClient({
               }}>
                 <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <div style={{ display: "inline-flex", alignItems: "center", gap: "6px", background: "rgba(0, 127, 255, 0.06)", color: "var(--azure)", padding: "4px 12px", borderRadius: "999px", fontSize: "0.7rem", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" }}>
-                    <span style={{ display: "inline-block", width: "12px", height: "14px", display: "flex", alignItems: "center" }}>🛡️</span>
+                    <span style={{ width: "12px", height: "14px", display: "flex", alignItems: "center" }}>🛡️</span>
                     DÒNG DỮ LIỆU LUÂN CHUYỂN THỰC TẾ
                   </div>
                   <div style={{ fontSize: "0.7rem", fontWeight: 600, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.05em" }}>TIẾN TRÌNH AI</div>
